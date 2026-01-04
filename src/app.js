@@ -1,13 +1,11 @@
 'use strict';
+
 const readline = require('readline');
 const { generateRandomNumber } = require('./modules/generateRandomNumber');
 const { checkIsValidUserInput } = require('./modules/checkIsValidUserInput');
 const { getBullsAndCows } = require('./modules/getBullsAndCows');
 
-const term = readline.createInterface(
-  process.stdin,
-  process.stdout
-)
+const term = readline.createInterface(process.stdin, process.stdout);
 
 function game() {
   const numberToGuess = generateRandomNumber();
@@ -17,24 +15,26 @@ function game() {
       const validInput = checkIsValidUserInput(input);
 
       if (!validInput.ok) {
-        console.log(validInput.err);
+        process.stdout.write(`${validInput.err}\n`);
         askQuestion();
+
         return;
       }
 
-      const res = getBullsAndCows(validInput.data, numberToGuess)
-      console.log(res);
+      const res = getBullsAndCows(validInput.data, numberToGuess);
+
+      process.stdout.write(`${res}\n`);
 
       if (res.bulls === 4) {
-        console.log('You won!');
+        process.stdout.write('You won!');
         term.close();
       } else {
-        askQuestion()
+        askQuestion();
       }
-    })
+    });
   }
 
-  askQuestion()
+  askQuestion();
 }
 
 game();

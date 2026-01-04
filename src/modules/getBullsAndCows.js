@@ -13,15 +13,18 @@
  * Example: { bulls: 1, cows: 2 }
  */
 function getBullsAndCows(userInput, numberToGuess) {
+  const userStr = String(userInput);
+  const targetStr = String(numberToGuess);
+
   const res = {
     bulls: 0,
     cows: 0,
-  }
+  };
 
   for (let i = 0; i < 4; i++) {
-    if (userInput[i] === numberToGuess[i]) {
+    if (userStr[i] === targetStr[i]) {
       res.bulls += 1;
-    } else if (numberToGuess.some(el => el === userInput[i])) {
+    } else if (targetStr.includes(userStr[i])) {
       res.cows += 1;
     }
   }
