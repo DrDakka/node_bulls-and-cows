@@ -23,7 +23,7 @@ function game() {
 
       const res = getBullsAndCows(validInput.data, numberToGuess);
 
-      process.stdout.write(`${res}\n`);
+      process.stdout.write(`Bulls: ${res.bulls}, Cows: ${res.cows}\n`);
 
       if (res.bulls === 4) {
         process.stdout.write('You won!');
